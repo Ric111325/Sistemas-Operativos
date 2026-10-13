@@ -46,4 +46,4 @@ public:
         void ordenarPorTiempo(); //Ordena los elementos de la cola por tiempo de menor a mayor
     };  
     
-#endif dqueue_hpp
+#endif // dqueue_hpp
