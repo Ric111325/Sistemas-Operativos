@@ -2,15 +2,25 @@
 #define MENU_HPP
 
 #include <iostream>
+#include "dqueue.hpp"
+#include "PlanNoExpro.hpp"
 
 using namespace std;
 
 class menu {
 private:
-	void mostrarOpciones();
+    dqueue cola_procesos;
 
-	int leerOpcion();
+   
+    FIFO obj_fifo;
+    SJF obj_sjf;
+
+    void mostrarOpciones();
+    int leerOpcion();
+    void capturarProcesos();
+
 public:
-	void ejecutar();
+    void ejecutar();
 };
+
 #endif

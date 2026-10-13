@@ -7,45 +7,43 @@
 using namespace std;
 
 class dqueue{
+public:
 
     class node {
+    
+    public: 
+        char ID;
+        int prioridad;
+        int tiempo;
+        int tiempo_restante;
+        int tiempo_retorno;
 
-        int dat ;
         node *nxt;
-
-        public:
+        node(char _id, int _tiempo, int _prioridad);
+    };
+private:
         
-            node(int);
-
-            node *next() const { return nxt;} //Getter que devuelve la direccion de un nodo     //  Getter para el apuntador
-            void next (node *p) { nxt = p;} // Setter que guarda la direccion en el nodo        //  Setter para el apuntador
-            int ID() const {return dat;} //Getter que devuevle la info del nodo               //  Getter para el dato
-            int tm() const {return dat;} //Getter que devuevle la info del nodo               //  Getter para el dato
-            int prioridad() const {return dat;} //Getter que devuevle la info del nodo               //  Getter para el dato
-        };      
-        
-
         node *start;
+        node *end;
+        int s;
 
-        int n; //Capacidad
-        int s; //Tamaño
-
-    public:
-        dqueue(int);
+public:    
+        dqueue();
         ~dqueue();
 
 
-        void enqueue(int); //Agrega un elemento al final de la cola
+        void enqueue(char id, int tiempo, int prioridad); //Agrega un elemento al final de la cola
         void dequeue(); //Elimina un elemento del frente de la cola
-        int front() const; //Devuelve el elemento del frente de la cola
+        void limpiar(); //Elimina todos los elementos de la cola
 
-        int capacidad() const {return n;} //Devuelve la capacidad de la cola
+        
         int size() const {return s;} //Devuelve el tamaño de la cola
-
         bool Empty() const {return s == 0;} //Devuelve true si la cola esta vacia
-        bool Full() const {return s == n;} //Devuelve true si la cola esta llena
+    
+        node* getStart() const { return start; } //Devuelve el primer elemento de la cola
+        dqueue* clonar() const; //Crea una copia de la cola actual
 
-        void print(); //Imprime los elementos de la cola
+        void ordenarPorTiempo(); //Ordena los elementos de la cola por tiempo de menor a mayor
     };  
     
 #endif dqueue_hpp
