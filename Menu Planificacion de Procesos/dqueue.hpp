@@ -13,8 +13,9 @@ public:
     
     public: 
         char ID;
-        int prioridad;
         int tiempo;
+        int prioridad;
+        
         int tiempo_restante;
         int tiempo_retorno;
 

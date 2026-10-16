@@ -48,7 +48,10 @@ void dqueue::enqueue(char id, int tiempo, int prioridad) { // Agrega un elemento
 
 
 void dqueue::dequeue() { // Elimina un elemento del frente de la cola
-    if (Empty()) return;
+    if (Empty()) {
+        cout << "La cola esta vacia, no se puede eliminar un elemento." << endl;
+        return;
+    }
     
     node *temp = start;
     start = start->nxt;
@@ -72,7 +75,7 @@ dqueue* dqueue::clonar() const { // Crea una copia de la cola actual
 }
 
 void dqueue::ordenarPorTiempo() { //Ordena los elementos segun el tiempo 
-    if (s <= 1) return; 
+    if(s <= 1) return; // No es necesario ordenar si hay 0 o 1 elementos
     
     bool huboCambio;
     do {

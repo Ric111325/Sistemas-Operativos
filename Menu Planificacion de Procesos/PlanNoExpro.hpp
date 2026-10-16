@@ -10,18 +10,18 @@ using namespace std;
 
 class NoExpropiativo {
 protected:
-    void mostrarResultados(dqueue* cola_simulada, char orden[], int tiempos[], int num_cambios); // Muestra los resultados de la planificación de procesos
+    void mostrarResultados(dqueue* cola_simulada, char orden[], int tiempos[], int num_cambios); // Muestra los resultados de la planificacion de procesos
 public:
-    virtual void ejecutar(dqueue* cola_original) = 0; // Método virtual para ejecutar la planificación de procesos
+    virtual void ejecutar(dqueue* cola_original) = 0; // Metodo virtual para ejecutar la planificacion de procesos
 };
 
 
-class FIFO : public NoExpropiativo { // Clase que implementa la planificación FIFO
+class FIFO : public NoExpropiativo { // Clase que implementa a FIFO
 public:
     void ejecutar(dqueue* cola_original) override;
 };
 
-class SJF : public NoExpropiativo { // Clase que implementa la planificación SJF
+class SJF : public NoExpropiativo { // Clase que implementa a SJF
 public:
     void ejecutar(dqueue* cola_original) override;
 };
