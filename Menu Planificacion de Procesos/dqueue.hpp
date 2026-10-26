@@ -34,7 +34,6 @@ public:
 
 
         void enqueue(char id, int tiempo, int prioridad); //Agrega un elemento al final de la cola
-        void dequeue(); //Elimina un elemento del frente de la cola
         void limpiar(); //Elimina todos los elementos de la cola
 
         
@@ -45,6 +44,7 @@ public:
         dqueue* clonar() const; //Crea una copia de la cola actual
 
         void ordenarPorTiempo(); //Ordena los elementos de la cola por tiempo de menor a mayor
+        void ordenarPorPrioridad(); //Ordena los elementos de la cola por prioridad de mayor a menor
     };  
     
 #endif // dqueue_hpp

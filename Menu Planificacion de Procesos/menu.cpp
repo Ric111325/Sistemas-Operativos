@@ -5,8 +5,8 @@ void menu::mostrarOpciones() {
     cout << "1. Captura de procesos\n";
     cout << "2. FIFO\n";
     cout << "3. SJF\n";
-    cout << "4. Round Robin\n";
-    cout << "5. Prioridad\n";
+    cout << "4. Prioridad\n";
+    cout << "5. Round Robin\n";
     cout << "6. Salir\n";
 }
 
@@ -17,7 +17,7 @@ int menu::leerOpcion() {
         cout << "Opcion invalida, selecciona un numero del 1 al 6: ";
         cin.clear();
         char caracter;
-        while (cin.get(caracter) and caracter != '\n') {}
+        while (cin.get(caracter) && caracter != '\n') {}
     }
     return opcion;
 }
@@ -39,6 +39,7 @@ void menu::capturarProcesos() {
         
         cola_procesos.enqueue(id, t, p);
     }
+    cout << "Procesos capturados exitosamente.\n";
 }
 
 void menu::ejecutar() {
@@ -60,13 +61,16 @@ void menu::ejecutar() {
                 else obj_sjf.ejecutar(&cola_procesos);
                 break;
             case 4:
-                cout << "\nNo hay procesos, ve a la opcion 1.\n";
+                if(cola_procesos.Empty()) cout << "\nNo hay procesos, ve a la opcion 1.\n";
+                else obj_prioridad.ejecutar(&cola_procesos);
                 break;
             case 5:
-                cout << "\nNo hay procesos, ve a la opcion 1.\n";
+                if(cola_procesos.Empty()) cout << "\nNo hay procesos, ve a la opcion 1.\n";
+                else obj_rr.ejecutar(&cola_procesos);
                 break;
             case 6:
-                cout << "\nFin del programa\n";
+                cola_procesos.limpiar(); 
+                cout << "\nFin del programa. Memoria liberada.\n";
                 break;
         }
     } while (opcion != 6);
