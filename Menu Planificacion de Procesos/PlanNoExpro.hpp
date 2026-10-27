@@ -23,7 +23,7 @@ public:
 
 class SJF : public NoExpropiativo { // Clase que implementa a SJF
 public:
-    void ejecutar(dqueue* cola_original) override;
+    void ejecutar(dqueue* cola_original) override; // Metodo que ejecuta la planificacion de procesos SJF
 };
 
 
