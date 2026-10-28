@@ -1,5 +1,18 @@
 #include "PlanNoExpro.hpp"
 
+void NoExpropiativo::mostrarEstadoCola(dqueue* cola) {
+    dqueue::node* aux = cola->getStart();
+    bool hay = false;
+    while (aux != nullptr) {
+        if (aux->tiempo_restante > 0) {
+            cout << "[" << aux->ID << "]";
+            hay = true;
+        }
+        aux = aux->nxt;
+    }
+    if (!hay) cout << "[Vacia]";
+}
+
 void NoExpropiativo::mostrarResultados(dqueue* cola_simulada, char orden[], int tiempos[], int num_cambios) {  // Muestra los resultados de la planificación de procesos
     float suma_tr = 0;
     int n = cola_simulada->size(); 
@@ -20,7 +33,7 @@ void NoExpropiativo::mostrarResultados(dqueue* cola_simulada, char orden[], int 
     
     cout << "Tiempo de Retorno Promedio: " << fixed << setprecision(2) << (suma_tr / n) << endl; // Muestra el tiempo de retorno promedio
 
-    cout << "\nSimulacion:" << endl;// Muestra la simulación de la planificación de procesos
+    cout << "\nSimulacion:" << endl;
     cout << tiempos[0];
     for (int i = 0; i < num_cambios; ++i) {
         cout << " [" << orden[i] << "] " << tiempos[i+1];
@@ -29,7 +42,7 @@ void NoExpropiativo::mostrarResultados(dqueue* cola_simulada, char orden[], int 
 
 }
 
-void FIFO::ejecutar(dqueue* cola_original) { // Añade la planificacion de procesos FIFO
+void FIFO::ejecutar(dqueue* cola_original) { 
     dqueue* copia = cola_original->clonar();
     int n = copia->size();
     
@@ -39,23 +52,31 @@ void FIFO::ejecutar(dqueue* cola_original) { // Añade la planificacion de proce
     tiempos[0] = 0;
     int idx = 0;
 
-    dqueue::node* aux = copia->getStart();// Recorre la cola de procesos y calcula los tiempos de retorno
+    cout << "\n=== Simulacion FIFO ===\n";
+    cout << "Evolucion de la cola:\n";
+    mostrarEstadoCola(copia); 
+
+    dqueue::node* aux = copia->getStart();
     while (aux != nullptr) {
         orden[idx] = aux->ID;
         tiempo_actual += aux->tiempo;
+        aux->tiempo_restante = 0; 
         aux->tiempo_retorno = tiempo_actual;
         tiempos[idx + 1] = tiempo_actual;
         idx++;
+        
+        cout << " -> ";
+        mostrarEstadoCola(copia); 
+
         aux = aux->nxt;
     }
+    cout << "\n";
 
-    cout << "\n=== Planificacion FIFO ===";
     mostrarResultados(copia, orden, tiempos, n);
-
     delete[] orden; delete[] tiempos; delete copia;
 }
 
-void SJF::ejecutar(dqueue* cola_original) { // Añade la planificacion de procesos SJF
+void SJF::ejecutar(dqueue* cola_original) { 
     dqueue* copia = cola_original->clonar();
     copia->ordenarPorTiempo(); 
 
@@ -66,19 +87,26 @@ void SJF::ejecutar(dqueue* cola_original) { // Añade la planificacion de proces
     tiempos[0] = 0;
     int idx = 0;
 
+    cout << "\n=== Simulacion SJF ===\n";
+    cout << "Evolucion de la cola:\n";
+    mostrarEstadoCola(copia);
+
     dqueue::node* aux = copia->getStart();
     while (aux != nullptr) {
         orden[idx] = aux->ID;
         tiempo_actual += aux->tiempo;
+        aux->tiempo_restante = 0; 
         aux->tiempo_retorno = tiempo_actual;
         tiempos[idx + 1] = tiempo_actual;
         idx++;
+        
+        cout << " -> ";
+        mostrarEstadoCola(copia);
+        
         aux = aux->nxt;
     }
+    cout << "\n";
 
-    cout << "\n=== Planificacion SJF ===";
     mostrarResultados(copia, orden, tiempos, n);
-
     delete[] orden; delete[] tiempos; delete copia;
 }
-

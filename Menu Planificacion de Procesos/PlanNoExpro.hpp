@@ -11,6 +11,7 @@ using namespace std;
 class NoExpropiativo {
 protected:
     void mostrarResultados(dqueue* cola_simulada, char orden[], int tiempos[], int num_cambios); // Muestra los resultados de la planificacion de procesos
+    void mostrarEstadoCola(dqueue* cola); // Muestra como va cambiando la cola 
 public:
     virtual void ejecutar(dqueue* cola_original) = 0; // Metodo virtual para ejecutar la planificacion de procesos
 };

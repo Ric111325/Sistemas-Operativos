@@ -77,3 +77,32 @@ void dqueue::ordenarPorTiempo() { //Ordena los elementos segun el tiempo
         }
     } while (huboCambio);
 }
+
+// ... (Deja todo tu codigo anterior de dqueue_2.cpp arriba de esto) ...
+
+void dqueue::moverAlFinal(char id) {
+    if (s <= 1) return;
+    if (end->ID == id) return; 
+    
+    node* actual = start;
+    node* previo = nullptr;
+    
+   
+    while (actual != nullptr && actual->ID != id) {
+        previo = actual;
+        actual = actual->nxt;
+    }
+    
+    if (actual == nullptr) return;
+    
+  
+    if (previo == nullptr) {
+        start = start->nxt; 
+    } else {
+        previo->nxt = actual->nxt; 
+    }
+    
+    actual->nxt = nullptr;
+    end->nxt = actual;
+    end = actual;
+}

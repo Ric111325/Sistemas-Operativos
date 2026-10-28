@@ -11,6 +11,7 @@ class Expropiativo {
 protected:
     int quantum;
     void mostrarResultados(dqueue* cola_simulada, char orden[], int tiempos[], int num_cambios);
+    void mostrarEstadoCola(dqueue* cola);
 public:
     virtual void ejecutar(dqueue* cola_original) = 0;
 };
