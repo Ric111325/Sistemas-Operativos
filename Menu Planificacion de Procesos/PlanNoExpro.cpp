@@ -120,4 +120,3 @@ void SJF::ejecutar(dqueue* cola_original) {
     mostrarResultados(copia, orden, tiempos, n); // Muestra los resultados y estadísticas
     delete[] orden; delete[] tiempos; delete copia; // Libera la memoria
 }
-}
