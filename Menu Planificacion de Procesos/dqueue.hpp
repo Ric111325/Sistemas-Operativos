@@ -44,7 +44,7 @@ public:
         dqueue* clonar() const; // Crea y devuelve una copia exacta de la cola
 
         void ordenarPorTiempo(); // Ordena los procesos de la cola de menor a mayor duración
-        void moverAlFinal(char id); // <--- NUEVA FUNCION AÑADIDA // Busca un proceso por su ID y lo traslada al final de la cola
+        void moverAlFinal(char id); // Busca un proceso por su ID y lo traslada al final de la cola
     };  
     
 #endif // dqueue_hpp
